@@ -22,7 +22,7 @@ public class Config extends net.cubespace.Yamler.Config.Config {
         }
     }
 
-    @Comment("The setting for Announcer, the setting self explain itself.")
+    @Comment("The setting for Announcer, the setting explains itself.")
     private HashMap<String, Object> settings = new HashMap<String, Object>() {{
         put("debug", false);
         put("delay", 60);
