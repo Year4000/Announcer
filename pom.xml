@@ -65,7 +65,7 @@
                             <minimizeJar>true</minimizeJar>
                             <artifactSet>
                                 <includes>
-                                    <include>com.sk89q.command-framework-bungee</include>
+                                    <include>com.sk89q:command-framework-bungee</include>
                                 </includes>
                             </artifactSet>
                         </configuration>
