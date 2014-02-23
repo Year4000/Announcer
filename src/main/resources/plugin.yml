@@ -1,0 +1,4 @@
+name: Announcer
+author: ewized
+version: ${pom.version}
+main: net.year4000.announcer.Announcer
