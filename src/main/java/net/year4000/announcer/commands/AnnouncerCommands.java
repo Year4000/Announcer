@@ -1,5 +1,6 @@
 package net.year4000.announcer.commands;
 
+import com.ewized.utilities.bungee.util.MessageUtil;
 import com.sk89q.bungee.util.BungeeWrappedCommandSender;
 import com.sk89q.minecraft.util.commands.Command;
 import com.sk89q.minecraft.util.commands.CommandContext;
@@ -24,7 +25,7 @@ public class AnnouncerCommands {
     public static void reload(CommandContext args, CommandSender sender) throws CommandException {
         Announcer.inst().reloadConfig();
         Announcer.inst().reloadSchedulers();
-        sender.sendMessage(Announcer.makeMessage("Announcer config reloaded."));
+        sender.sendMessage(MessageUtil.makeMessage("&6Announcer config reloaded."));
     }
 
     @Command(
@@ -46,9 +47,9 @@ public class AnnouncerCommands {
                     try {
                         String message = args.hasFlag('r') ?
                                 server : TextComponent.toLegacyText(Broadcaster.parseBroadcast(server));
-                        return Announcer.replaceColor((index + 1) + " - " + message);
+                        return MessageUtil.replaceColors((index + 1) + " - " + message);
                     } catch (Exception e) {
-                        return Announcer.replaceColor("&c" + e.getMessage());
+                        return MessageUtil.replaceColors("&c" + e.getMessage());
                     }
                 }
             }.display(
@@ -73,7 +74,7 @@ public class AnnouncerCommands {
         Config config = Announcer.inst().getConfig();
         try {
             config.addServerMessages(args.getString(0), args.getJoinedStrings(1));
-            sender.sendMessage(Announcer.makeMessage("&6Message added to " + args.getString(0) + "."));
+            sender.sendMessage(MessageUtil.makeMessage("&6Message added to " + args.getString(0) + "."));
         } catch (NullPointerException e) {
             throw new CommandException("Server does not exist.");
         } catch (InvalidConfigurationException e) {
@@ -96,7 +97,7 @@ public class AnnouncerCommands {
                 throw new CommandException("There is no message with that index.");
             } else {
                 config.removeServerMessages(args.getString(0), args.getInteger(1) - 1);
-                sender.sendMessage(Announcer.makeMessage(String.format(
+                sender.sendMessage(MessageUtil.makeMessage(String.format(
                         "&6Message removed from %s.",
                         args.getString(0))
                 ));
@@ -137,7 +138,7 @@ public class AnnouncerCommands {
                 default:
                     message = "&cIs the setting in lowercase and exists?";
             }
-            sender.sendMessage(Announcer.makeMessage(message));
+            sender.sendMessage(MessageUtil.makeMessage(message));
         }
         // Change the setting of option
         else {
@@ -172,7 +173,7 @@ public class AnnouncerCommands {
                     default:
                         message = "&cIs the setting in lowercase and exists?";
                 }
-                sender.sendMessage(Announcer.makeMessage(message));
+                sender.sendMessage(MessageUtil.makeMessage(message));
             } catch (InvalidConfigurationException e) {
                 throw new CommandException("Could not change the config.");
             }

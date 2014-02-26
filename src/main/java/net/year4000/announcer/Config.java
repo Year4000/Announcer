@@ -100,15 +100,19 @@ public class Config extends net.cubespace.Yamler.Config.Config {
      * @param server The server name.
      * @return The list of messages.
      */
-    public List<String> getMessages(final String server) throws NullPointerException {
+    public List<String> getMessages(final String server) {
         return new ArrayList<String>() {{
-            // Create global messages.
-            for (String message : messages.get("global"))
-                add(message);
+            try {
+                // Create global messages.
+                for (String message : messages.get("global"))
+                    add(message);
+            } catch(NullPointerException e) {}
 
-            // Create the per server messages.
-            for (String message : messages.get(server))
-                add(message);
+            try {
+                // Create the per server messages.
+                for (String message : messages.get(server))
+                    add(message);
+            } catch(NullPointerException e) {}
         }};
     }
 

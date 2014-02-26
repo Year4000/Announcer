@@ -1,8 +1,5 @@
 package net.year4000.announcer;
 
-import net.md_5.bungee.api.ChatColor;
-import net.md_5.bungee.api.chat.BaseComponent;
-import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.scheduler.ScheduledTask;
@@ -59,26 +56,6 @@ public class Announcer extends Plugin {
      */
     public static void debug(String message) {
         if (inst().getConfig().isDebug()) log(message);
-    }
-
-    /**
-     * Replace color codes with code Minecraft can read.
-     *
-     * @param message The message to be translated.
-     * @return The translated message.
-     */
-    public static String replaceColor(String message) {
-        return ChatColor.translateAlternateColorCodes('&', message);
-    }
-
-    /**
-     * Make a simple string converted in to a BaseComponent.
-     *
-     * @param message The string to be converted.
-     * @return The BaseComponent with the string message.
-     */
-    public static BaseComponent[] makeMessage(String message) {
-        return TextComponent.fromLegacyText(replaceColor(message));
     }
 
     /**

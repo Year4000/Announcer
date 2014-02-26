@@ -51,39 +51,13 @@
                     </archive>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>2.1</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <minimizeJar>true</minimizeJar>
-                            <artifactSet>
-                                <includes>
-                                    <include>com.sk89q:command-framework-bungee</include>
-                                </includes>
-                            </artifactSet>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
 
     <repositories>
         <repository>
-            <id>overcast</id>
-            <name>Overcast Network repo</name>
-            <url>https://repo.oc.tc/content/repositories/public</url>
-        </repository>
-        <repository>
-            <id>cube-space</id>
-            <url>http://nexus.cube-space.net/content/groups/public/</url>
+            <id>year4000</id>
+            <url>http://ci.year4000.net/plugin/repository/everything/</url>
         </repository>
         <repository>
             <id>dev-cmc</id>
@@ -93,19 +67,19 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.sk89q</groupId>
-            <artifactId>command-framework-bungee</artifactId>
-            <version>0.5-SNAPSHOT</version>
+            <groupId>com.ewized.utilities</groupId>
+            <artifactId>bungee</artifactId>
+            <version>1</version>
+        </dependency>
+        <dependency>
+            <groupId>net.year4000</groupId>
+            <artifactId>translator</artifactId>
+            <version>1</version>
         </dependency>
         <dependency>
             <groupId>net.md-5</groupId>
             <artifactId>bungeecord-api</artifactId>
             <version>LATEST</version>
-        </dependency>
-        <dependency>
-            <groupId>net.cubespace</groupId>
-            <artifactId>Yamler-Core</artifactId>
-            <version>1.2.8-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

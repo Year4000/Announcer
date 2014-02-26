@@ -1,5 +1,6 @@
 package net.year4000.announcer.commands;
 
+import com.ewized.utilities.bungee.util.MessageUtil;
 import com.sk89q.bungee.util.BungeeCommandsManager;
 import com.sk89q.bungee.util.CommandExecutor;
 import com.sk89q.bungee.util.CommandRegistration;
@@ -25,21 +26,21 @@ public class Commands implements CommandExecutor<CommandSender> {
         try {
             commands.execute(commandName, args, sender, sender);
         } catch (CommandPermissionsException e) {
-            sender.sendMessage(plugin.makeMessage("&cYou don't have permission."));
+            sender.sendMessage(MessageUtil.makeMessage("&cYou don't have permission."));
         } catch (MissingNestedCommandException e) {
-            sender.sendMessage(plugin.makeMessage("&c" + e.getUsage()));
+            sender.sendMessage(MessageUtil.makeMessage("&c" + e.getUsage()));
         } catch (CommandUsageException e) {
-            sender.sendMessage(plugin.makeMessage("&c" + e.getMessage()));
-            sender.sendMessage(plugin.makeMessage("&c" + e.getUsage()));
+            sender.sendMessage(MessageUtil.makeMessage("&c" + e.getMessage()));
+            sender.sendMessage(MessageUtil.makeMessage("&c" + e.getUsage()));
         } catch (WrappedCommandException e) {
             if (e.getCause() instanceof NumberFormatException) {
-                sender.sendMessage(plugin.makeMessage("&cNumber expected, string received instead."));
+                sender.sendMessage(MessageUtil.makeMessage("&cNumber expected, string received instead."));
             } else {
-                sender.sendMessage(plugin.makeMessage("&cAn error has occurred. See console."));
+                sender.sendMessage(MessageUtil.makeMessage("&cAn error has occurred. See console."));
                 e.printStackTrace();
             }
         } catch (CommandException e) {
-            sender.sendMessage(plugin.makeMessage("&c" + e.getMessage()));
+            sender.sendMessage(MessageUtil.makeMessage("&c" + e.getMessage()));
         }
     }
 }

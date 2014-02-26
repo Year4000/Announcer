@@ -1,5 +1,6 @@
 package net.year4000.announcer;
 
+import com.ewized.utilities.bungee.util.MessageUtil;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.chat.ComponentSerializer;
@@ -65,10 +66,10 @@ public class Broadcaster implements Runnable {
     public static BaseComponent[] parseBroadcast(String message) throws Exception {
         try {
             // Raw Message
-            if (message.startsWith("{text:") || message.startsWith("{text:", 1)) {
+            if (MessageUtil.isRawMessage(message)) {
                 // Create one big Base Component
-                BaseComponent[] prefix = Announcer.makeMessage(plugin.getConfig().getPrefix());
-                BaseComponent[] rawMessage = ComponentSerializer.parse(message);
+                BaseComponent[] prefix = MessageUtil.makeMessage(plugin.getConfig().getPrefix());
+                BaseComponent[] rawMessage = MessageUtil.parseMessage(message);
                 BaseComponent[] announcement = new BaseComponent[prefix.length + rawMessage.length];
 
                 // Merge the components.
@@ -79,7 +80,7 @@ public class Broadcaster implements Runnable {
             }
             // Simple Classic Message
             else {
-                return Announcer.makeMessage(plugin.getConfig().getPrefix() + message);
+                return MessageUtil.makeMessage(plugin.getConfig().getPrefix() + message);
             }
         } catch (NullPointerException e) {
             Announcer.debug(e.getMessage());
