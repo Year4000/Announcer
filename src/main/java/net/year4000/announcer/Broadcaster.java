@@ -3,7 +3,6 @@ package net.year4000.announcer;
 import com.ewized.utilities.bungee.util.MessageUtil;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
-import net.md_5.bungee.chat.ComponentSerializer;
 
 import java.util.List;
 import java.util.Random;
@@ -67,16 +66,7 @@ public class Broadcaster implements Runnable {
         try {
             // Raw Message
             if (MessageUtil.isRawMessage(message)) {
-                // Create one big Base Component
-                BaseComponent[] prefix = MessageUtil.makeMessage(plugin.getConfig().getPrefix());
-                BaseComponent[] rawMessage = MessageUtil.parseMessage(message);
-                BaseComponent[] announcement = new BaseComponent[prefix.length + rawMessage.length];
-
-                // Merge the components.
-                for (int i = 0; i < prefix.length + rawMessage.length; i++)
-                    announcement[i] = i < prefix.length ? prefix[i] : rawMessage[i - prefix.length];
-
-                return announcement;
+                return MessageUtil.merge(plugin.getConfig().getPrefix(), MessageUtil.parseMessage(message));
             }
             // Simple Classic Message
             else {

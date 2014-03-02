@@ -1,9 +1,10 @@
 package net.year4000.announcer;
 
+import com.ewized.utilities.bungee.util.CommandWrapper;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.scheduler.ScheduledTask;
-import net.year4000.announcer.commands.Commands;
+import net.year4000.announcer.commands.AnnouncerBaseCommand;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +29,7 @@ public class Announcer extends Plugin {
         addSchedulers();
 
         // Register the commands
-        new Commands();
+        new CommandWrapper(this, AnnouncerBaseCommand.class);
     }
 
     /**
