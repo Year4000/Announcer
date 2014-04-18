@@ -72,11 +72,6 @@
             <version>1</version>
         </dependency>
         <dependency>
-            <groupId>net.year4000</groupId>
-            <artifactId>translator</artifactId>
-            <version>1</version>
-        </dependency>
-        <dependency>
             <groupId>net.md-5</groupId>
             <artifactId>bungeecord-api</artifactId>
             <version>LATEST</version>
