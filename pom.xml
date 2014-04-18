@@ -57,7 +57,7 @@
     <repositories>
         <repository>
             <id>year4000</id>
-            <url>http://ci.year4000.net/plugin/repository/everything/</url>
+            <url>http://repo.year4000.net/content/repositories/releases/</url>
         </repository>
         <repository>
             <id>dev-cmc</id>
