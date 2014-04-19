@@ -14,6 +14,13 @@
         <url>http://www.year4000.net/</url>
     </organization>
 
+    <distributionManagement>
+        <snapshotRepository>
+            <id>year4000-deployment</id>
+            <url>http://repo.year4000.net/content/repositories/private/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <build>
         <defaultGoal>install</defaultGoal>
         <finalName>${project.name}</finalName>
@@ -56,8 +63,8 @@
 
     <repositories>
         <repository>
-            <id>year4000</id>
-            <url>http://repo.year4000.net/content/repositories/releases/</url>
+            <id>year4000-repo</id>
+            <url>http://repo.year4000.net/content/repositories/public/</url>
         </repository>
         <repository>
             <id>dev-cmc</id>
