@@ -32,7 +32,7 @@ public class Settings extends Config {
         put("delay", 60);
         put("random", false);
         put("prefix", "&7[&6TIP&7]&r ");
-        put("net/year4000/announcer/locales", new ArrayList<String>() {{
+        put("locales", new ArrayList<String>() {{
             add("en_US");
         }});
     }};
