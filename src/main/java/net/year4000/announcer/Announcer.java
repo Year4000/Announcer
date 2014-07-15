@@ -1,10 +1,15 @@
 package net.year4000.announcer;
 
 import com.ewized.utilities.bungee.BungeePlugin;
+import com.ewized.utilities.core.util.FileUtil;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.scheduler.ScheduledTask;
 import net.year4000.announcer.commands.AnnouncerBaseCommand;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,7 +29,6 @@ public class Announcer extends BungeePlugin {
         // Set up the config
         settings = new Settings();
         debug = settings.isDebug();
-
 
         // Register the loop for each server.
         addSchedulers();

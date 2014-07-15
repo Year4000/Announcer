@@ -16,6 +16,7 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.year4000.announcer.Announcer;
 import net.year4000.announcer.Broadcaster;
 import net.year4000.announcer.Settings;
+import net.year4000.announcer.messages.InternalManager;
 import net.year4000.announcer.messages.Message;
 import net.year4000.announcer.messages.MessageManager;
 
@@ -31,11 +32,15 @@ public class AnnouncerCommands {
     @CommandPermissions({"announcer.admin", "announcer.reload"})
     public static void reload(CommandContext args, CommandSender sender) throws CommandException {
         ProxiedPlayer player = sender instanceof ProxiedPlayer ? (ProxiedPlayer) sender : null;
+        Message locale = new Message(player) {{
+            this.localeManager = InternalManager.get();
+        }};
 
         Announcer.inst().reloadConfig();
         Announcer.inst().reloadSchedulers();
         MessageManager.get().reload();
-        sender.sendMessage(MessageUtil.makeMessage(new Message(player).get("cmd.reload")));
+        InternalManager.get().reload();
+        sender.sendMessage(MessageUtil.makeMessage(locale.get("cmd.reload")));
     }
 
     @Command(
@@ -49,11 +54,14 @@ public class AnnouncerCommands {
     @CommandPermissions({"announcer.admin", "announcer.list"})
     public static void list(final CommandContext args, CommandSender sender) throws CommandException {
         ProxiedPlayer player = sender instanceof ProxiedPlayer ? (ProxiedPlayer) sender : null;
+        Message locale = new Message(player) {{
+            this.localeManager = InternalManager.get();
+        }};
 
         try {
             // Show raw messages or pretty messages.
             final int MAX_PER_PAGE = 8;
-            new SimplePaginatedResult<String>(new Message(player).get("cmd.messages", args.getString(0)), MAX_PER_PAGE) {
+            new SimplePaginatedResult<String>(locale.get("cmd.messages", args.getString(0)), MAX_PER_PAGE) {
                 @Override
                 public String format(String server, int index) {
                     try {
@@ -69,7 +77,7 @@ public class AnnouncerCommands {
                 args.argsLength() == 2 ? args.getInteger(1) : 1
             );
         } catch (NullPointerException e) {
-            throw new CommandException(new Message(player).get("cmd.server.not_found"));
+            throw new CommandException(locale.get("cmd.server.not_found"));
         }
     }
 
@@ -82,7 +90,9 @@ public class AnnouncerCommands {
     @CommandPermissions({"announcer.admin", "announcer.edit", "announcer.add"})
     public static void add(CommandContext args, CommandSender sender) throws CommandException {
         ProxiedPlayer player = sender instanceof ProxiedPlayer ? (ProxiedPlayer) sender : null;
-        Message locale = new Message(player);
+        Message locale = new Message(player) {{
+            this.localeManager = InternalManager.get();
+        }};
         Settings settings = Announcer.inst().getSettings();
 
         try {
@@ -105,7 +115,9 @@ public class AnnouncerCommands {
     @CommandPermissions({"announcer.admin", "announcer.edit", "announcer.remove"})
     public static void remove(CommandContext args, CommandSender sender) throws CommandException {
         ProxiedPlayer player = sender instanceof ProxiedPlayer ? (ProxiedPlayer) sender : null;
-        Message locale = new Message(player);
+        Message locale = new Message(player) {{
+            this.localeManager = InternalManager.get();
+        }};
         Settings settings = Announcer.inst().getSettings();
 
         try {
@@ -132,7 +144,9 @@ public class AnnouncerCommands {
     @SuppressWarnings("unchecked")
     public static void setting(CommandContext args, CommandSender sender) throws CommandException {
         ProxiedPlayer player = sender instanceof ProxiedPlayer ? (ProxiedPlayer) sender : null;
-        Message locale = new Message(player);
+        Message locale = new Message(player) {{
+            this.localeManager = InternalManager.get();
+        }};
         Settings settings = Announcer.inst().getSettings();
 
         // View the settings.

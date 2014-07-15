@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -33,11 +32,8 @@ public class Settings extends Config {
         put("delay", 60);
         put("random", false);
         put("prefix", "&7[&6TIP&7]&r ");
-        put("locales", new ArrayList<String>() {{
+        put("net/year4000/announcer/locales", new ArrayList<String>() {{
             add("en_US");
-            add("en_PT");
-            add("pt_BR");
-            add("pt_PT");
         }});
     }};
 
