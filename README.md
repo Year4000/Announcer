@@ -1,5 +1,8 @@
 Announcer
 ======
+
+> This project is no longer maintained
+
 This plugin was made for the servers at [Year4000]. Announcer is a BungeeCord plugin to
 schedule messages over a set amount of time. This allows one place to manage, each server's
 messages or the messages as a whole.
